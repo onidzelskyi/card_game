@@ -27,6 +27,7 @@ int Player::init() {
 int Player::addCard(const Card& card) {
     int err = EXIT_ADD_CADR_FAIL;
     this->cards.push_back(card);
+    std::cout << "test" << this->cards.size() << std::endl;
     return err;
 }
 
@@ -52,14 +53,13 @@ int Players::init() {
         player.init();
         addPlayer(player);
     }
-    for(unsigned int i=0; i<Players::playerNumCards; ++i) {
-        std::for_each(players.begin(), players.end(), [](Player p){p.addCard(/*this->cardsStack.pop()*/Card());});
-    }
     return err;
 }
 
 
 int Players::startGame() {
+    initStackCards();
+    dispenceCards();
     int err = EXIT_UNINIT;
     while(!(this->isPlayerEmpty())) {
         this->goPlayer();
@@ -70,7 +70,6 @@ int Players::startGame() {
 
 
 bool Players::isPlayerEmpty() {
-    std::cout << "test" << std::endl;
     return this->players.at(currentPlayer).isEmpty();
 }
 
@@ -95,6 +94,31 @@ int Players::addPlayer(const Player& player) {
     int err = EXIT_NO_PLAYER;
     this->players.push_back(player);
     return err;
+}
+
+
+int Players::initStackCards() {
+    int err = EXIT_NO_PLAYER;
+    for(int i=0; i<Players::totalNumCards; ++i) {
+        this->cardsStack.push(Card::generateCard());
+    }
+    return err;
+}
+
+
+int Players::dispenceCards() {
+    int err = EXIT_NO_PLAYER;
+    for(unsigned int i=0; i<Players::playerNumCards; ++i) {
+        std::for_each(players.begin(), players.end(), [this](Player& p){p.addCard(this->popCardFromStack());});
+    }
+    return err;
+}
+
+
+const Card& Players::popCardFromStack() {
+    const Card& card = this->cardsStack.top();
+    this->cardsStack.pop();
+    return card;
 }
 
 

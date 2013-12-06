@@ -44,9 +44,12 @@ public:
     int startGame();
 private:
     int addPlayer(const Player&);
+    int initStackCards();
+    int dispenceCards();
     bool isPlayerEmpty();
     int goPlayer();
     int nextPlayer();
+    const Card& popCardFromStack();
 private:
     std::stack<Card> cardsStack;
     std::vector<Card> heap;
