@@ -4,12 +4,12 @@
 
 namespace cg {
 
-
+/*
 unsigned int Players::nextTurn = 0;
 unsigned int Players::totalNumCards = 52;
 unsigned int Players::playerNumCards = 6;
 unsigned int Players::numPlayers = 2;
-
+*/
 
 Player::Player()
 {
@@ -36,7 +36,7 @@ bool Player::isEmpty() const {
     return this->cards.empty();
 }
 // ----------------------------------------------------
-
+/*
 
 Players::Players()
     : currentPlayer(0)
@@ -120,6 +120,6 @@ const Card& Players::popCardFromStack() {
     this->cardsStack.pop();
     return card;
 }
-
+*/
 
 } // namespace cg

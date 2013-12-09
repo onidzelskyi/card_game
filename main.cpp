@@ -1,11 +1,11 @@
-#include "player.hpp"
+#include "cardgame.hpp"
 
 
 int main()
 {
-    cg::Players players;
-    players.init();
-    players.startGame();
+    cg::CardGame game;
+    game.init();
+    game.start();
     return 0;
 }
 

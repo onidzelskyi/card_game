@@ -2,6 +2,9 @@
 #define CARD_HPP
 
 
+#include <iostream>
+
+
 namespace cg {
 
 
@@ -13,16 +16,38 @@ enum class suit : unsigned char {
 };
 
 
+enum class court : unsigned char {
+    TWO
+    , THREE
+    , FOUR
+    , FIVE
+    , SIX
+    , SEVEN
+    , EIGHT
+    , NINE
+    , TEN
+    , JACK
+    , QUEEN
+    , KING
+    , ACE
+};
 
 
 class Card {
 public:
-    Card();
+    explicit Card(suit, court);
     ~Card();
 public:
-    static Card generateCard();
-private:
-
+    //static Card generateCard();
+public:
+    friend std::ostream& operator<<(std::ostream& os, const Card& card) {
+        os << card._value;
+        return os;
+    }
+//private:
+    unsigned short _value;
+    suit _suit;
+    court _court;
 };
 
 

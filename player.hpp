@@ -33,7 +33,7 @@ public:
 private:
     std::vector<Card> cards;
 };
-
+/*
 
 class Players {
 public:
@@ -61,7 +61,7 @@ private:
     static unsigned int playerNumCards;
     static unsigned int numPlayers;
 };
-
+*/
 
 } // namespace cg
 
